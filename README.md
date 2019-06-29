@@ -29,7 +29,7 @@ docker build -t pdns .
 docker run -d --name pdns -v $(pwd)/pdns/bind:/etc/bind -p 53:53/udp --restart=always pdns
 
 # Quickstart (Windows)
-docker run -d --name pdns -v ./pdns/bind:/etc/bind -p 53:53/udp --restart=always pdns
+docker run -d --name pdns -v C:/.../pdns/bind:/etc/bind -p 53:53/udp --restart=always pdns
 
 # Run in foreground, remove container when stopped.
 docker run --rm -p 53:53/udp pdns
