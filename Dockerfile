@@ -13,5 +13,6 @@ COPY pdns/pdns.conf /etc/pdns/pdns.conf
 ADD pdns/bind/* /etc/pdns/bind/
 
 ADD entrypoint.sh /
+RUN chmod +x entrypoint.sh
 
 CMD ["/entrypoint.sh", "--disable-syslog", "--write-pid=no"]
