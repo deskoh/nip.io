@@ -2,8 +2,8 @@
 
 Dead simple wildcard DNS for any IP Address.
 
-[NIP.IO](http://nip.io) is powered by [PowerDNS](https://powerdns.com) with a simple, 
-custom [PipeBackend](https://doc.powerdns.com/authoritative/backends/pipe.html): 
+[NIP.IO](http://nip.io) is powered by [PowerDNS](https://powerdns.com) with a simple,
+custom [PipeBackend](https://doc.powerdns.com/authoritative/backends/pipe.html):
 [backend.py](nipio/backend.py)
 
 Head to [NIP.IO](http://nip.io) for more details.
@@ -16,7 +16,7 @@ NIP.IO is licensed under [Apache 2.0](LICENSE.txt), and is a free service run by
 * Forwarding DNS server (requires PowerDNS < 4.1)
   * Recursive queries are forwarded to Google DNS Server (`8.8.8.8`). (see `pdns/pdns.conf`)
 * BIND DNS Server (see `pdns/bind`)
-* Wildcard DNS similar to [NIP.IO](http://nip.io) but with domain `.local` (see `backend.conf`)
+* Wildcard DNS similar to [NIP.IO](http://nip.io) (see `backend.conf` to change domain)
   * Non-wildcard entries are resolved to 127.0.0.1 (see `backend.conf`)
 
 ## Getting Started
