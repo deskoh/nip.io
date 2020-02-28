@@ -17,7 +17,7 @@ NIP.IO is licensed under [Apache 2.0](LICENSE.txt), and is a free service run by
   * Recursive queries are forwarded to Google DNS Server (`8.8.8.8`). (see `pdns/pdns.conf`)
 * BIND DNS Server (see `pdns/bind`)
 * Wildcard DNS similar to [NIP.IO](http://nip.io) (see `backend.conf` to change domain)
-  * Non-wildcard entries are resolved to 127.0.0.1 (see `backend.conf`)
+  * Non-wildcard entries (ending with nip.io) are resolved to 127.0.0.1 (see `backend.conf`)
 
 ## Getting Started
 
@@ -26,10 +26,10 @@ NIP.IO is licensed under [Apache 2.0](LICENSE.txt), and is a free service run by
 docker build -t pdns .
 
 # Quickstart (Linux)
-docker run -d --name pdns -v $(pwd)/pdns/bind:/etc/bind -p 53:53/udp --restart=always pdns
+docker run -d --name pdns -v $(pwd)/pdns/bind:/etc/pdns/bind -p 53:53/udp --restart=always pdns
 
 # Quickstart (Windows)
-docker run -d --name pdns -v C:/.../pdns/bind:/etc/bind -p 53:53/udp --restart=always pdns
+docker run -d --name pdns -v C:/.../pdns/bind:/etc/pdns/bind -p 53:53/udp --restart=always pdns
 
 # Run in foreground, remove container when stopped.
 docker run --rm -p 53:53/udp pdns
@@ -44,7 +44,7 @@ docker run --rm -it -p 53:53/udp pdns /bin/ash
 
 Overwrite BIND configuration using `-v` flag.
 
-```
+```sh
 docker run --rm -v $(pwd)/bind:/etc/pdns/bind -p 53:53/udp pdns
 ```
 
@@ -52,13 +52,13 @@ docker run --rm -v $(pwd)/bind:/etc/pdns/bind -p 53:53/udp pdns
 
 To configure values in `pdns.conf`, use `PDNS_{pdns-config-key}={config-value}`. e.g. To change upstream DNS server for recursive query, set `PDNS_recursor=8.8.8.8`.
 
-```
+```sh
 docker run --rm -it -e PDNS_recursor=8.8.8.8 -p 53:53/udp pdns /bin/ash
 ```
 
 Alternatively, overwrite `pdns.conf` with your own file using `-v` flag.
 
-```
+```sh
 docker run --rm -v $(pwd)/pdns.conf:/etc/pdns/pdns.conf -p 53:53/udp pdns
 ```
 
@@ -66,6 +66,6 @@ docker run --rm -v $(pwd)/pdns.conf:/etc/pdns/pdns.conf -p 53:53/udp pdns
 
 Use `DOMAIN` environment variable to specify wildcard domain (e.g. `DOMAIN=nip.io`).
 
-```
+```sh
 docker run --rm -e DOMAIN=nip.io -p 53:53/udp pdns
 ```
