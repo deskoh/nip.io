@@ -9,8 +9,7 @@ EXPOSE 53/tcp 53/udp
 COPY nipio/backend.py /usr/local/bin
 RUN chmod +x /usr/local/bin/backend.py
 COPY nipio/backend.conf /usr/local/bin
-COPY pdns/pdns.conf /etc/pdns/pdns.conf
-ADD pdns/bind/* /etc/pdns/bind/
+COPY pdns/ /etc/pdns/
 
 ADD entrypoint.sh /
 RUN chmod +x entrypoint.sh
